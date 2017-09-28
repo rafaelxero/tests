@@ -1,0 +1,8 @@
+# -*- Makefile -*-
+#
+# make -f Makefile.v2
+
+calculator: add.o calc.o mult.o sub.o
+	gcc -g -o calculator add.o calc.o mult.o sub.o
+
+add.o calc.o mult.o sub.o: numbers.h

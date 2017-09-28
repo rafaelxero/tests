@@ -1,0 +1,9 @@
+# -*- Makefile -*-
+#
+# make -f Makefile.v4
+
+SRCS = add.c calc.c mult.c sub.c
+PROG = calculator
+HEADERS = numbers.h
+
+include framework-v4.wk

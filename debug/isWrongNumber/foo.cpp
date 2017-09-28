@@ -1,0 +1,95 @@
+/*
+ * g++ -o foo foo.cpp
+ * g++ -o foo foo.cpp -std=c++11
+ */
+
+#include <iostream>
+#include <vector>
+#include <cmath>
+
+inline int isnan(double x) {return x != x;}
+
+/*
+ * This version is not working, even casting it causes the same error
+ */
+//template<typename T>
+//bool isWrongNumber(T a) {return (isnan((T) a) || isinf((T) a));}
+
+#define isWrongNumber(a) (isnan(a) || isinf(a))
+//#define isWrongNumber(a) (isnan((double) a) || isinf((double) a))
+//#define isWrongNumber(a) (isnan(a))
+//#define isWrongNumber(a) (isinf(a))
+
+struct btest
+{
+
+  bool b;
+  btest()
+  {
+    b=true;
+  }
+
+  /*
+   * The return type (and shape) of the functions was based on std::vector
+   *
+   * http://en.cppreference.com/w/cpp/container/vector
+   *
+   */
+  
+  /*
+  std::vector<bool>::const_reference getb() const
+  {
+    return b;
+  }
+  */
+  
+  /*
+   * This is the one causing troubles:
+   *
+   */
+  //std::vector<bool>::reference getb ()
+  bool& getb()
+  {
+    return b;
+  } 
+   
+  
+} bb;
+
+/*
+ * Previous test done with Mehdi, to see if the "reference" is the problem
+ *
+ */
+
+/*
+bool getbtest()
+{
+  return btest;
+}
+
+bool& getbtestref()
+{
+  return btest;
+}
+*/
+
+int main(void) {
+
+  std::vector<bool> a (true, 4);
+  a[1] = a[3] = false;
+
+  bool b = true;
+  
+  std::cout << "Vector a = [" << a[0] << " " << a[1] << " " << a[2] << " " << a[3] << "]"
+            << std::endl;
+
+  isWrongNumber(a[0]);
+  //isWrongNumber(b);
+  //isWrongNumber(true);
+  //isWrongNumber((bool) a[0]);
+  //isWrongNumber((double) a[0]);
+  //isWrongNumber(bb.getb());
+  //isinf((double) a[0]);
+  
+  return 0;
+}

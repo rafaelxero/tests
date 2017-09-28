@@ -1,0 +1,12 @@
+#include <iostream>
+#include <vector>
+#include <Eigen/Eigen>
+#include <EigenUtil.h>
+
+int main(void) {
+
+  Eigen::Vector6d a(1, 2, 3, 4, 5, 6);
+  std::vector<double> b;
+  
+  return 0;
+}

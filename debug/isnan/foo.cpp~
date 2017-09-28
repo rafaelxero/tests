@@ -1,0 +1,14 @@
+/*
+ * g++ -o foo foo.cpp
+ * g++ -o foo foo.cpp -std=c++11
+ */
+
+int main(void) {
+  
+  double number = 0;
+
+  if (isnan(number))
+    std::cout << "Nan" << std::endl;
+
+  return 0;
+}

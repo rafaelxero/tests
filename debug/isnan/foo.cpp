@@ -6,6 +6,10 @@
 #include <iostream>
 #include <cmath>
 
+#if __cplusplus >= 201103L
+using std::isnan;
+#endif
+
 template<typename T>
 T saturate(T val, T min, T max) {
     return std::min(std::max(val, min), max);

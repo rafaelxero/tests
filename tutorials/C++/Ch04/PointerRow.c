@@ -4,7 +4,11 @@
 
 #include <stdio.h>
 
-int num[10][10];
+int num[10][10] = {
+  {1, 2, 3},
+  {1, 2, 3, 4},
+  {1, 2, 3, 4, 5}
+};
 
 void pr_row(int j);
 

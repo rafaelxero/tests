@@ -1,0 +1,1 @@
+g++ -o foo foo.cpp /home/rcisneros/src/hrg/hmc2/src/RobotServer/RobotStructureHRG.cpp -I /home/rcisneros/src/hrg/hmc2/src/ -I /home/rcisneros/openrtp/include/OpenHRP-3.1/ -I /usr/include/eigen3/ -std=c++11 -O2 -g -DNDEBUG

@@ -1,0 +1,7 @@
+digraph G {
+node [shape=record];
+1[shape=record, label="foot-motion-generator | { <out1> Foot_landing_left | <out2> Foot_landing_right } "];
+5[shape=record, label="{ <in1> Foot_landing_left | <in2> Foot_landing_right } | force-distribution"]
+1:out1 -> 5:in1;
+1:out2 -> 5:in2;
+}

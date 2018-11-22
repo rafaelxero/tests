@@ -1,0 +1,25 @@
+digraph G {
+0[label=hmc];
+1[label="foot-motion-generator"];
+2[label="cog-pattern-generator"];
+3[label="cog-motion-generator"];
+4[label="balance-control"];
+5[label="force-distribution"];
+6[label="foot-impedance-manager"];
+7[label="motion-control-manager"];
+8[label="zmp-calculator"];
+9[label="zmp-limit-over-checker"];
+5->3 [taillabel="Zmp_cmd=>Zmp_cur"];
+5->4 [taillabel="Torque_uncomp=>Torque_uncomp"];
+1->5 [taillabel="Foot_landing_left=>Foot_landing_left"];
+7->5 [taillabel="Torque_ref=>Torque_ref"];
+1->5 [taillabel="Foot_landing_right=>Foot_landing_right"];
+2->5 [taillabel="Zmp_ctrl_ref=>Zmp_cmd"];
+5->6 [taillabel="Torque_ctrl_sole_ref_left=>Torque_ref_left"];
+5->6 [taillabel="Torque_ctrl_sole_ref_right=>Torque_ref_right"];
+5->6 [taillabel="Force_ctrl_ref_left=>Force_ref_left"];
+5->6 [taillabel="Force_ctrl_ref_right=>Force_ref_right"];
+5->8 [taillabel="Zmp_cmd=>Zmp_rel_ref"];
+5->8 [taillabel="Zmp_cmd=>Zmp_cmd"];
+5->9 [taillabel="zmp_limit_over=>zmp_limit_over"];
+}

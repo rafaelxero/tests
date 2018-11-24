@@ -18,7 +18,22 @@ public:
 
   template <class Vertex>
   void operator() (std::ostream& out, const Vertex& v) const {
-    out << "[shape=record, label=\" { <in1> " << inport_[v][0] << " | <in2> " << inport_[v][1] << "} | " << name_[v] << " | { <out1> " << outport_[v][0] << " | <out2>" << outport_[v][1] << "} \"]";
+    
+    //out << "[shape=record, label=\" { <in1> " << inport_[v][0] << " | <in2> " << inport_[v][1] << "} | " << name_[v] << " | { <out1> " << outport_[v][0] << " | <out2>" << outport_[v][1] << " } \"]";
+
+    out << "[shape=record, label=\" { ";
+    for (int i = 0; i < inport_[v].size(); i++) {
+      out << "<in" << i + 1 << "> " << inport_[v][i];
+      if (i != inport_[v].size() - 1)
+        out << " | ";
+    }
+    out << "} | " << name_[v] << " | { ";
+    for (int i = 0; i < outport_[v].size(); i++) {
+      out << "<out" << i + 1 << "> " << outport_[v][i];
+      if (i != outport_[v].size() - 1)
+        out << " | ";
+    }
+    out << " } \"]";
   }
   
 private:
@@ -90,6 +105,7 @@ int main(void) {
   map[v1].inport.push_back("foot-in2");
   map[v1].outport.push_back("foot-out1");
   map[v1].outport.push_back("foot-out2");
+  map[v1].outport.push_back("foot-out3");
 
   Map::vertex_descriptor v2 = add_vertex(map);
   map[v2].name = "force-distribution";

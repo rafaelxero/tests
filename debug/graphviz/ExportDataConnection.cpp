@@ -18,7 +18,7 @@ public:
 
   template <class Vertex>
   void operator() (std::ostream& out, const Vertex& v) const {
-    out << "[shape=record, label=\" <in> " << inport_[v] << " | " << name_[v] << " | <out> " << outport_[v] << "\"]";
+    out << "[shape=record, label=\" { <in1> " << inport_[v][0] << " | <in2> " << inport_[v][1] << "} | " << name_[v] << " | { <out1> " << outport_[v][0] << " | <out2>" << outport_[v][1] << "} \"]";
   }
   
 private:
@@ -59,8 +59,8 @@ inline edge_writer<From, To> make_edge_writer(From from, To to) {
 
 struct Plugin {
   std::string name;
-  std::string inport;
-  std::string outport;
+  std::vector<std::string> inport;
+  std::vector<std::string> outport;
 };
 
 struct Connection {
@@ -86,20 +86,24 @@ int main(void) {
   
   Map::vertex_descriptor v1 = add_vertex(map);
   map[v1].name = "foot-motion-generator";
-  map[v1].inport = "in";
-  map[v1].outport = "out";
+  map[v1].inport.push_back("foot-in1");
+  map[v1].inport.push_back("foot-in2");
+  map[v1].outport.push_back("foot-out1");
+  map[v1].outport.push_back("foot-out2");
 
   Map::vertex_descriptor v2 = add_vertex(map);
   map[v2].name = "force-distribution";
-  map[v2].inport = "in";
-  map[v2].outport = "out";
+  map[v2].inport.push_back("force-in1");
+  map[v2].inport.push_back("force-in2");
+  map[v2].outport.push_back("force-out1");
+  map[v2].outport.push_back("force-out2");
 
   bool inserted = false;
   
   Map::edge_descriptor e;
   boost::tie(e, inserted) = add_edge(v1, v2, map);
-  map[e].from = "out";
-  map[e].to = "in";
+  map[e].from = "out1";
+  map[e].to = "in2";
   
   boost::write_graphviz(file, map, make_node_writer(boost::get(&Plugin::name, map), boost::get(&Plugin::inport, map), boost::get(&Plugin::outport, map)), make_edge_writer(boost::get(&Connection::from, map), boost::get(&Connection::to, map)));
   

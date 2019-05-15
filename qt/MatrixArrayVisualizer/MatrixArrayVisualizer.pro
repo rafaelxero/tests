@@ -21,7 +21,7 @@ SOURCES += main.cpp\
            
 HEADERS += widget.h\
            plot.h
-
+           
 INCLUDEPATH += ../3rdparty/qextserialport/src
 LIBS +=  ../3rdparty/qextserialport/libQt5ExtSerialPort.so
 

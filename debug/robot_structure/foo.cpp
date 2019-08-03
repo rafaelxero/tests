@@ -7,7 +7,7 @@ using namespace robot_server;
 
 int main(int argc, char *argv[])
 {
-  HumanoidBodyPtr body(new HumanoidBody());
+  //HumanoidBodyPtr body(new HumanoidBody());
 
   /*
   const char *url = "/home/rcisneros/openrtp/share/OpenHRP-3.1/robot/HRP5P/model/HRP5Pmain.wrl";

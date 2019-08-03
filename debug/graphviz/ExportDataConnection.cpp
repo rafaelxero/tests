@@ -19,8 +19,6 @@ public:
   template <class Vertex>
   void operator() (std::ostream& out, const Vertex& v) const {
     
-    //out << "[shape=record, label=\" { <in1> " << inport_[v][0] << " | <in2> " << inport_[v][1] << "} | " << name_[v] << " | { <out1> " << outport_[v][0] << " | <out2>" << outport_[v][1] << " } \"]";
-
     out << "[shape=record, label=\" { ";
     for (int i = 0; i < inport_[v].size(); i++) {
       out << "<in" << i + 1 << "> " << inport_[v][i];

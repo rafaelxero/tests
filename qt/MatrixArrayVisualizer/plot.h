@@ -24,27 +24,21 @@ class Plot : public QwtPlot {
 
   Plot(QWidget *parent);
 
+  void setMatrixData(const double *matrix, const int numRows, const int numColumns);
+
  private:
 
-    QwtPlotSpectrogram *spectrogram;
+  QwtPlotSpectrogram *spectrogram;
+  QwtMatrixRasterData *rasterData;
 };
 
 /*
-class SpectrogramData : public QwtRasterData {
-
-public:
-
-  SpectrogramData();
-
-  virtual double value(double x, double y) const;
-};
-*/
-
 class RasterData : public QwtMatrixRasterData {
 
 public:
 
   RasterData();
 };
+*/
 
 #endif  // __PLOT_H__
